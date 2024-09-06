@@ -1,0 +1,23 @@
+.header-container   {
+    background-color:hsl(219, 95%, 47%);
+}
+.header-content   {
+    display: flex;
+    flex-direction: row;
+    justify-content:flex-end;
+    margin-top: 20px;
+}
+body {
+    background-image: url(./img/Lake_Vanajavesi_and_Häme_Castle_from_air.jpg) ;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.body-container {
+    margin-top: 20px;
+    margin-left: 50px;
+    margin-right: auto;
+}
+.btn-margin    {
+    margin-right: 200px;
+}
