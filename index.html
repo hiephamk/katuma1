@@ -8,55 +8,92 @@
     <title>Katuma1</title>
 </head>
 <body>
+  <div class="container page-container">
     <div class="header-container">
-        <img class="img-logo" src="./img/Katuma1-logo.png" alt="">
-        <div class="header-content">
-            <ul class="nav justify-content-end me-5">
-                <li class="nav-item">
-                    <a class="nav-link active text-light" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-light" href="Statistics.html">Statistics</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-light" href="Documents.html">Documents</a>
-                </li>
-            </ul>
-            <form class="d-flex me-2" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-light" type="submit">Search</button>
-            </form>
+      <div class="text-end m-3 header-top">
+        <img class="user-img" src="./img/icons8-user-100.png" alt="user">
+      </div>
+      <div class="header-body">
+        <div class="logoImg align-middle">
+          <img class="logo" src="https://www.jarviwiki.fi/w/resources/assets/jarvi-meriwiki_logo_fi.png" alt="">
         </div>
+        <div class="header-content">
+          <div class="slogan">
+            <img src="https://www.jarviwiki.fi/w/resources/assets/identifier_message.png" alt="">
+          </div>
+          <div class="search-container">
+            <div class="container-fluid">
+              <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <div class="search-icon">
+                  <img class="img-search-icon" src="./img/icons8-search-50.png" alt="">
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="body-container container">
-          <div class="mb-3 row">
-            <label for="inputPassword" class="col-sm-2 col-form-label text-light">Text-2</label>
-            <div class="col-sm-6">
-              <input type="text" class="form-control" id="inputPassword">
+    <div class=""></div>
+
+    <div class="main-container">
+      <div class="sidebar-container">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary ">
+          <div class="">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="sidbar-items collapse navbar-collapse sidebar-content" id="navbarSupportedContent">
+              <form action="" method="">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex flex-column text-center w-100">
+                  <li class="nav-item p-2">
+                    <a class="nav-link active bg-warning rounded" aria-current="page" href="./index.html">Home</a>
+                  </li>
+                  <li class="nav-item p-2">
+                    <a class="nav-link bg-warning rounded" href="#">Link</a>
+                  </li>
+                  <li class="nav-item dropdown p-2">
+                    <a class="nav-link dropdown-toggle bg-warning rounded" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Dropdown
+                    </a>
+                  </li>
+                </ul>
+              </form>
             </div>
           </div>
-          <div class="mb-3 row">
-            <label for="inputPassword" class="col-sm-2 col-form-label text-light">Text-2</label>
-            <div class="col-sm-6">
-              <input type="text" class="form-control" id="inputPassword">
-            </div>
-          </div>
-          <div class="mb-3 row">
-            <label for="inputPassword" class="col-sm-2 col-form-label text-light">Text-2</label>
-            <div class="col-sm-6">
-              <input type="text" class="form-control" id="inputPassword">
-            </div>
-          </div>
-          <div class="mb-3 row">
-            <label for="inputPassword" class="col-sm-2 col-form-label text-light">Text-2</label>
-            <div class="col-sm-6">
-              <input type="text" class="form-control" id="inputPassword">
-            </div>
-          </div>
-          <div class="d-grid gap-2 col-1 mx-auto">
-            <button class="btn btn-primary" type="button">Button</button>
-          </div>
+        </nav>
+      </div>
+      <div class="main-content">
+        <div class="select-form">
+          <select class="form-select m-3 w-100" aria-label="Default select example">
+            <option selected>Please choose one answer</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select>
+          <select class="form-select m-3 w-100" aria-label="Default select example">
+            <option selected>Please choose one answer</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select>
+          <select class="form-select m-3 w-100" aria-label="Default select example">
+            <option selected>Please choose one answer</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select>
+          <select class="form-select m-3 w-100" aria-label="Default select example">
+            <option selected>Please choose one answer</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select>
+        </div>
+
+      </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
