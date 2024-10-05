@@ -3,110 +3,486 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
     <title>Katuma1</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        canvas {
+            max-width: 600px;
+            max-height: 400px;
+            margin: 20px 0;
+        }
+    </style>
 </head>
 <body>
-  <div class="container page-container">
-    <div class="header-container">
-      <div class="text-end m-3 header-top">
-        <img class="user-img" src="./img/icons8-user-100.png" alt="user">
-      </div>
-      <div class="header-body">
-        <div class="logoImg align-middle">
-          <img class="logo" src="https://www.jarviwiki.fi/w/resources/assets/jarvi-meriwiki_logo_fi.png" alt="">
-        </div>
-        <div class="header-content">
-          <div class="slogan">
-            <img src="https://www.jarviwiki.fi/w/resources/assets/identifier_message.png" alt="">
-          </div>
-          <div class="search-container">
-            <div class="container-fluid">
-              <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <div class="search-icon">
-                  <img class="img-search-icon" src="./img/icons8-search-50.png" alt="">
-                </div>
-              </form>
+    <div class="container page-container">
+        <div class="header-container">
+            <div class="text-end m-3 header-top">
+              <img class="user-img" src="./img/icons8-user-100.png" alt="user">
             </div>
-          </div>
+            <div class="header-body">
+              <div class="logoImg align-middle">
+                <img class="logo" src="https://www.jarviwiki.fi/w/resources/assets/jarvi-meriwiki_logo_fi.png" alt="">
+              </div>
+              <div class="header-content">
+                <div class="slogan">
+                  <img src="https://www.jarviwiki.fi/w/resources/assets/identifier_message.png" alt="">
+                </div>
+                <div class="search-container">
+                  <div class="container-fluid">
+                    <form class="d-flex" role="search">
+                      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                      <div class="search-icon">
+                        <img class="img-search-icon" src="./img/icons8-search-50.png" alt="">
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
         </div>
-      </div>
+        <div class="main-nav">
+            <a class="main-nav-text" href="index.html">Katumajärvi-info</a>
+            <a class="main-nav-text" href="info.html">About atumajärvi</a>
+            <a class="main-nav-text" href="user_report.html">User Research</a>
+            <a class="main-nav-text" href="Documents.html">Plant and animal</a>
+            <a class="main-nav-text" href="#">Tools</a>
+        </div>
+        <div class="main-container">
+            <div class="main-content d-flex flex-row m-2 justify-content-evenly">
+                <form id="filterForm">
+                    <label for="startDate">From:</label>
+                    <input type="datetime-local" id="startDate" name="startDate">
+                    <label for="endDate">To:</label>
+                    <input type="datetime-local" id="endDate" name="endDate">
+                    <input class="btn btn-primary m-3" type="submit" value="Submit">
+                </form>
+            </div>
+            <div class="main-content">
+                <div class="chart-container">
+                    <div class="chart-content">
+                        <h2>pH Values updated</h2>
+                        <canvas id="pHChart"></canvas>
+                    </div>
+                    <div class="chart-content">
+                        <h2>Temperature updated</h2>
+                        <canvas id="temperatureChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sub-main-container">
+            <div>
+              <img class="img-fluid" src="./img/katumInfo-img.png" alt="">
+            </div>
+            <div>
+              <img class="img-fluid" src="https://www.jarviwiki.fi/w/images/thumb/2/2c/Pro_katumajarvi_logo.png/144px-Pro_katumajarvi_logo.png" alt="">
+            </div>
+        </div>
+        <div class="footer-container row">
+        <div class="left-footer-container col-3 d-flex flex-column">
+            <a class="left-footer-text" href="#">Contribute to our database</a>
+            <a class="left-footer-text" href="#">Information about the service</a>
+            <a class="left-footer-text" href="#">Privacy policy</a>
+            <a class="left-footer-text" href="#">Accessibility statement</a>
+            <a class="left-footer-text" href="#">Disclaimer</a>
+            <a class="left-footer-text" href="#">Cookie setting</a>
+            <a class="left-footer-text" href="#">About cookie</a>
+            <a class="left-footer-text" href="#">Send feedback</a>
+        </div>
+        <div class="main-footer-container col-7 ">
+            <div class="f-img-con row">
+            <div class="f-img col-4">
+                <img class="img-fluid img-footer" src="https://www.jarviwiki.fi/w/resources/assets/Syke_tunnus_rgb_vaaka.png" alt="">
+            </div>
+            <div class="f-img col-3">
+                <img class="img-fluid img-footer" src="https://www.jarviwiki.fi/w/resources/assets/gisbloom_logo.png" alt="">
+            </div>
+            <div class="f-img col-3">
+                <img class="img-fluid img-footer" src="https://www.jarviwiki.fi/w/resources/assets/mvtt_logo.png" alt="">
+            </div>
+            </div>
+            <div class="f-img-con row">
+            <div class="f-img col-3">
+                <img class="img-fluid" src="./img/cc-by.png" alt="">
+            </div>
+            <div class="f-img col-3"><img src="./img/poweredby_mediawiki_88x31.png" alt=""></div>
+            <div class="f-img col-3"><img src="./img/download.png" alt=""></div>
+            </div>
+        </div>
+        </div>
     </div>
-    <div class="main-nav">
-      <a class="main-nav-text" href="home.html">Home</a>
-      <a class="main-nav-text" href="Statistics.html">Statistics</a>
-      <a class="main-nav-text" href="Documents.html">Documents</a>
-      <a class="main-nav-text" href="#">Katumajärvi-info</a>
-      <a class="main-nav-text" href="#">Katumajärvi-info</a>
-    </div>
-    <div class="main-container">
 
-      <div class="main-content">
-        <h4>About Katumajärvi</h4>
-        <div class="kautu-info">
-          <img class="img-fluid p-3" src="./img/Lake_Vanajavesi_and_Häme_Castle_from_air.jpg" alt="">
-        </div>
-        <div class="info-text p-3">
-          <p class="">
-            Katumajärvi-info is an extension of Järvi-meriwiki, devised by the Katumajärvi protection association , which contains easily interpretable and automatically updated indicators of the state and development of Katumajärvi from the information produced by the authorities, Katumajärvi activists and ordinary citizens .
-          </p>
-          <p>
-          </p>
-          <p>
-            In the Katumajärvi info, you can quickly see the current water level height, surface water temperature or blue-green algae situation. You can also study the development of the lake's visibility depth, nutrient concentrations and ice cover period over several decades.
-          </p>
-          <p>
-            In Järvi-meriwiki, anyone can participate in making observations. Together, we make Katumajärvi info more up-to-date and comprehensive. We collect tips, guidance and answers to frequently asked questions on Katumajärvi-info's Instructions and advice page .
-          </p>
-          <p>
-            If you have development ideas or other considerations about Katumajärvi-info, you can write about them on the discussion page .
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="sub-main-container">
-      <div>
-        <img class="img-fluid" src="./img/katumInfo-img.png" alt="">
-      </div>
-      <div>
-        <img class="img-fluid" src="https://www.jarviwiki.fi/w/images/thumb/2/2c/Pro_katumajarvi_logo.png/144px-Pro_katumajarvi_logo.png" alt="">
-      </div>
-    </div>
-    <div class="footer-container row">
-      <div class="left-footer-container col-3 d-flex flex-column">
-        <a class="left-footer-text" href="#">Contribute to our database</a>
-        <a class="left-footer-text" href="#">Information about the service</a>
-        <a class="left-footer-text" href="#">Privacy policy</a>
-        <a class="left-footer-text" href="#">Accessibility statement</a>
-        <a class="left-footer-text" href="#">Disclaimer</a>
-        <a class="left-footer-text" href="#">Cookie setting</a>
-        <a class="left-footer-text" href="#">About cookie</a>
-        <a class="left-footer-text" href="#">Send feedback</a>
-      </div>
-      <div class="main-footer-container col-7 ">
-        <div class="f-img-con row">
-          <div class="f-img col-4">
-            <img class="img-fluid img-footer" src="https://www.jarviwiki.fi/w/resources/assets/Syke_tunnus_rgb_vaaka.png" alt="">
-          </div>
-          <div class="f-img col-3">
-            <img class="img-fluid img-footer" src="https://www.jarviwiki.fi/w/resources/assets/gisbloom_logo.png" alt="">
-          </div>
-          <div class="f-img col-3">
-            <img class="img-fluid img-footer" src="https://www.jarviwiki.fi/w/resources/assets/mvtt_logo.png" alt="">
-          </div>
-        </div>
-        <div class="f-img-con row">
-          <div class="f-img col-3">
-            <img class="img-fluid" src="./img/cc-by.png" alt="">
-          </div>
-          <div class="f-img col-3"><img src="./img/poweredby_mediawiki_88x31.png" alt=""></div>
-          <div class="f-img col-3"><img src="./img/download.png" alt=""></div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- <script>
+        const fileUrl = 'sensor_data.xlsx';
+
+        fetch(fileUrl)
+            .then(response => response.arrayBuffer())
+            .then(data => {
+                const workbook = XLSX.read(data, { type: 'array' });
+
+                const firstSheetName = workbook.SheetNames[0];
+                const worksheet = workbook.Sheets[firstSheetName];
+
+                const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+
+                const labels = [];
+                const pHData = [];
+                const temperatureData = [];
+
+                jsonData.forEach((row, index) => {
+                    if (index === 0) {
+                        return;
+                    }
+                    const tsValue = row[13];
+                    const pHValue = row[10];
+                    const temperatureValue = row[12];
+                    if (tsValue !== undefined && pHValue !== undefined && temperatureValue !== undefined) {
+                        labels.push(tsValue);
+                        pHData.push(pHValue);
+                        temperatureData.push(temperatureValue); 
+                    }
+                });
+                const pHCtx = document.getElementById('pHChart').getContext('2d');
+                const pHChart = new Chart(pHCtx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'pH',
+                            data: pHData,
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+
+                // Create Temperature Chart
+                const temperatureCtx = document.getElementById('temperatureChart').getContext('2d');
+                const temperatureChart = new Chart(temperatureCtx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Temperature',
+                            data: temperatureData,
+                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching the Excel file:', error);
+            });
+    </script> -->
+    <!-- <script>
+
+        const fileUrl = './sensor_data.xlsx';
+        let jsonData = [];
+
+        // Fetch and process the Excel file
+        fetch(fileUrl)
+            .then(response => response.arrayBuffer())
+            .then(data => {
+                const workbook = XLSX.read(data, { type: 'array' });
+                const firstSheetName = workbook.SheetNames[0];
+                const worksheet = workbook.Sheets[firstSheetName];
+                jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+            })
+            .catch(error => console.error('Error fetching the Excel file:', error));
+
+        // Function to filter and plot data based on datetime range
+        // Function to filter and plot data based on datetime range
+        function filterAndPlotData(startDate, endDate) {
+            const labels = [];
+            const pHData = [];
+            const temperatureData = [];
+
+            jsonData.forEach((row, index) => {
+    if (index === 0) return; // Skip header row
+
+    const tsValue = row[13]; // 14th column for timestamp (ISO 8601 format)
+    console.log("Raw tsValue:", tsValue); // Log raw value from the file
+    
+    // Validate and clean the tsValue if necessary
+    if (tsValue) {
+        const tsDate = new Date(tsValue);
+        if (isNaN(tsDate.getTime())) {
+            console.log("Invalid tsDate, check the format:", tsValue);
+        } else {
+            console.log("Valid tsDate:", tsDate); // Log the converted date
+        }
+        
+        // Proceed with filtering by datetime range
+        if (tsDate >= startDate && tsDate <= endDate) {
+            labels.push(tsValue); // You can keep the timestamp string as a label
+            pHData.push(row[10]); // 11th column for pH
+            temperatureData.push(row[12]); // 13th column for temperature
+        }
+    }
+});
+
+            // Update the charts
+            updateChart(pHChart, labels, pHData, 'pH');
+            updateChart(temperatureChart, labels, temperatureData, 'Temperature');
+        }
+        // Function to update Chart.js chart with new data
+        function updateChart(chart, labels, data, label) {
+            chart.data.labels = labels;
+            chart.data.datasets[0].data = data;
+            chart.data.datasets[0].label = label;
+            chart.update();
+        }
+
+        // Initialize the pH and Temperature charts
+        const pHCtx = document.getElementById('pHChart').getContext('2d');
+        const pHChart = new Chart(pHCtx, {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'pH',
+                    data: [],
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        const temperatureCtx = document.getElementById('temperatureChart').getContext('2d');
+        const temperatureChart = new Chart(temperatureCtx, {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Temperature',
+                    data: [],
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+        function formatDateTimeLocal(date) {
+            // Get the local date and time components
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-based
+            const day = String(date.getDate()).padStart(2, '0');
+            const hours = String(date.getHours()).padStart(2, '0');
+            const minutes = String(date.getMinutes()).padStart(2, '0');
+        
+            // Return the formatted string in 'YYYY-MM-DDTHH:MM' format
+            return `${year}-${month}-${day}T${hours}:${minutes}`;
+        }
+        
+        window.onload = function() {
+            const now = new Date();
+            const oneHourAgo = new Date(now.getTime() - 60 * 60 * 1000); // Current time - 1 hour
+        
+            document.getElementById('startDate').value = formatDateTimeLocal(oneHourAgo);
+            document.getElementById('endDate').value = formatDateTimeLocal(now);
+        };
+        
+        // Event listener for the form submit
+        document.getElementById('filterForm').addEventListener('submit', function (event) {
+            event.preventDefault(); 
+            // Prevent form submission
+            const startDate = new Date(document.getElementById('startDate').value);
+            const endDate = new Date(document.getElementById('endDate').value);
+            console.log("startdate:", startDate)
+            // Filter and plot the data based on selected datetime range
+            filterAndPlotData(startDate, endDate);
+        });
+        
+    </script> -->
+    <script>
+        const fileUrl = './sensor_data.xlsx';
+        let jsonData = [];
+    
+        // Fetch and process the Excel file
+        fetch(fileUrl)
+            .then(response => response.arrayBuffer())
+            .then(data => {
+                const workbook = XLSX.read(data, { type: 'array' });
+                const firstSheetName = workbook.SheetNames[0];
+                const worksheet = workbook.Sheets[firstSheetName];
+                jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+    
+                // Plot the first 10 rows as default on page load
+                plotDefaultData();
+            })
+            .catch(error => console.error('Error fetching the Excel file:', error));
+    
+        // Function to plot the first 10 values by default
+        function plotDefaultData() {
+            const labels = [];
+            const pHData = [];
+            const temperatureData = [];
+    
+            jsonData.forEach((row, index) => {
+                if (index === 0) return; // Skip header row
+                if (index > 10) return; // Limit to the first 10 rows
+    
+                const tsValue = row[13]; // 14th column for timestamp (ISO 8601 format)
+                const pHValue = row[10]; // 11th column for pH
+                const temperatureValue = row[12]; // 13th column for temperature
+    
+                if (tsValue && pHValue && temperatureValue) {
+                    labels.push(tsValue);
+                    pHData.push(pHValue);
+                    temperatureData.push(temperatureValue);
+                }
+            });
+    
+            // Update the charts with the default data
+            updateChart(pHChart, labels, pHData, 'pH');
+            updateChart(temperatureChart, labels, temperatureData, 'Temperature');
+        }
+    
+        // Function to filter and plot data based on datetime range
+        function filterAndPlotData(startDate, endDate) {
+            const labels = [];
+            const pHData = [];
+            const temperatureData = [];
+    
+            jsonData.forEach((row, index) => {
+                if (index === 0) return; // Skip header row
+    
+                const tsValue = row[13]; // 14th column for timestamp (ISO 8601 format)
+                const tsDate = new Date(tsValue);
+    
+                // Proceed with filtering by datetime range
+                if (tsDate >= startDate && tsDate <= endDate) {
+                    labels.push(tsValue); // Use the timestamp string as a label
+                    pHData.push(row[10]); // 11th column for pH
+                    temperatureData.push(row[12]); // 13th column for temperature
+                }
+            });
+    
+            // Update the charts with the filtered data
+            updateChart(pHChart, labels, pHData, 'pH');
+            updateChart(temperatureChart, labels, temperatureData, 'Temperature');
+        }
+    
+        // Function to update Chart.js chart with new data
+        function updateChart(chart, labels, data, label) {
+            chart.data.labels = labels;
+            chart.data.datasets[0].data = data;
+            chart.data.datasets[0].label = label;
+            chart.update();
+        }
+    
+        // Initialize the pH and Temperature charts
+        const pHCtx = document.getElementById('pHChart').getContext('2d');
+        const pHChart = new Chart(pHCtx, {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'pH',
+                    data: [],
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    
+        const temperatureCtx = document.getElementById('temperatureChart').getContext('2d');
+        const temperatureChart = new Chart(temperatureCtx, {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Temperature',
+                    data: [],
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    
+        // Format the datetime for the input fields
+        function formatDateTimeLocal(date) {
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            const hours = String(date.getHours()).padStart(2, '0');
+            const minutes = String(date.getMinutes()).padStart(2, '0');
+    
+            return `${year}-${month}-${day}T${hours}:${minutes}`;
+        }
+    
+        // Set default values in the date fields on page load
+        window.onload = function () {
+            const now = new Date();
+            const oneHourAgo = new Date(now.getTime() - 60 * 60 * 1000);
+    
+            document.getElementById('startDate').value = formatDateTimeLocal(oneHourAgo);
+            document.getElementById('endDate').value = formatDateTimeLocal(now);
+        };
+    
+        // Event listener for the form submit
+        document.getElementById('filterForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent form submission
+    
+            const startDate = new Date(document.getElementById('startDate').value);
+            const endDate = new Date(document.getElementById('endDate').value);
+    
+            // Filter and plot the data based on the selected datetime range
+            filterAndPlotData(startDate, endDate);
+        });
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
