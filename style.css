@@ -199,6 +199,34 @@ div > p{
     align-items: center;
     padding:5px;
 }
+.img-info-content {
+    box-sizing: border-box;
+    flex-basis: 30%;
+}
+.news-info-content {
+    box-sizing: border-box;
+    flex-basis: 48%;
+}
+.news-info-content h4 {
+    font-weight: bold;
+    color:rgb(90, 153, 192)
+}
+.news-info-content h5 {
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
+.img-info {
+    width: 100%;
+    padding-bottom: 20px;
+}
+.img-info-content  p {
+    font-weight: bold;
+    font-size: 20px;
+}
+p {
+    font-size: 22px;
+}
 @media only screen and (max-width:768px) and (min-width:200px) {
     .header-container, .header-body    {
         display: flex;
