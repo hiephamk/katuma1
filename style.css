@@ -96,34 +96,46 @@ html, body {
     width: 20px;
 }
 
-.main-nav   {
+.main-nav {
     box-sizing: border-box;
-    background-color: #3873ac;
-    height: 86px;
-    border-radius: 12px;
-    margin-top: 10px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px;
-    height: 126px;
-    
+    background-color: #3873ac; /* Background color */
+    height: auto; /* Height will be determined by content */
+    margin-top: 10px; /* Margin at the top */
+    display: flex; /* Use flexbox for layout */
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+    justify-content: space-between; /* Space items evenly */
+    padding: 10px; /* Padding inside the nav */
+    border-radius: 12px; /* Rounded corners */
 }
 
 .main-nav-text {
     box-sizing: border-box;
-    display: flex;
-    text-decoration: none;
-    font-size:24px;
-    color: rgb(33, 37, 41);
-    background-color: #90d7ee;
-    flex-basis: 19%;
-    border-radius: 7px;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    height: 29px;
+    display: block; /* Make links block elements */
+    text-decoration: none; /* Remove underline */
+    font-size: 24px; /* Font size */
+    color: rgb(33, 37, 41); /* Text color */
+    background-color: #90d7ee; /* Background for each link */
+    border-radius: 7px; /* Rounded corners */
+    padding: 10px 15px; /* Padding for each link */
+    margin: 5px; /* Margin around links for spacing */
+    transition: background-color 0.3s; /* Smooth background transition */
+}
+
+.main-nav-text:hover {
+    background-color: #77c1e8; /* Change background on hover */
+}
+
+@media only screen and (max-width: 768px) {
+    .main-nav {
+        flex-direction: column; /* Stack links vertically */
+        align-items: center; /* Center items */
+    }
+    
+    .main-nav-text {
+        width: 100%; /* Full width for mobile */
+        text-align: center; /* Center text */
+        margin: 5px 0; /* Adjust margin for vertical stacking */
+    }
 }
 .main-container {
     display: flex;
@@ -144,12 +156,25 @@ html, body {
 .chart-container {
     box-sizing: border-box;
     display: flex;
+    flex-wrap: wrap; /* Allows charts to wrap to the next line if they can't fit */
     justify-content: space-evenly;
     text-align: center;
+    width: 100%; /* Make sure the container takes full width */
 }
+
 .chart-content {
     box-sizing: border-box;
-    width: 100%;
+    flex-basis: 50%; /* Each chart takes up about 30% of the container width */
+    margin: 10px; /* Add margin for spacing between charts */
+    max-width: 40%; /* Prevent charts from stretching beyond their allocated space */
+    min-width: 250px; /* Minimum size for each chart before they stack */
+}
+
+@media only screen and (max-width: 768px) {
+    .chart-content {
+        flex-basis: 100%; /* Stack charts vertically on smaller screens */
+        max-width: 100%;
+    }
 }
 div > p{
     text-align: justify;
@@ -200,9 +225,12 @@ div > p{
 .img-google {
     box-sizing: border-box;
     width: 100%;
-    height: auto;
+    max-width: 100%; /* Prevents it from growing beyond its original size */
+    height: auto; /* Keeps the aspect ratio intact */
     align-items: center;
-    padding:5px;
+    padding: 5px;
+    display: block; /* Ensures it behaves like a block-level element */
+    margin: 0 auto; /* Centers the image horizontally */
 }
 .img-info-content {
     box-sizing: border-box;
