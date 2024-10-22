@@ -370,7 +370,11 @@
                 const temperatureValue = row[12]; // 13th column for temperature
     
                 if (tsValue && pHValue && temperatureValue) {
-                    labels.push(tsValue);
+                    const tsDate = new Date(tsValue);
+                    // Format the date to exclude seconds
+                    const formattedDate = `${tsDate.toLocaleDateString()} ${tsDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+                    
+                    labels.push(formattedDate);
                     pHData.push(pHValue);
                     temperatureData.push(temperatureValue);
                 }
@@ -395,7 +399,10 @@
     
                 // Proceed with filtering by datetime range
                 if (tsDate >= startDate && tsDate <= endDate) {
-                    labels.push(tsValue); // Use the timestamp string as a label
+                    // Format the date to exclude seconds
+                    const formattedDate = `${tsDate.toLocaleDateString()} ${tsDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+                    
+                    labels.push(formattedDate);
                     pHData.push(row[10]); // 11th column for pH
                     temperatureData.push(row[12]); // 13th column for temperature
                 }
@@ -429,9 +436,20 @@
                 }]
             },
             options: {
+                responsive: true, // Make chart responsive
                 scales: {
                     y: {
                         beginAtZero: true
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Date'
+                        },
+                        ticks: {
+                            autoSkip: true, // Automatically skip labels to avoid crowding
+                            maxTicksLimit: 10 // Maximum number of labels
+                        }
                     }
                 }
             }
@@ -451,9 +469,20 @@
                 }]
             },
             options: {
+                responsive: true, // Make chart responsive
                 scales: {
                     y: {
                         beginAtZero: true
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Date'
+                        },
+                        ticks: {
+                            autoSkip: true, // Automatically skip labels to avoid crowding
+                            maxTicksLimit: 10 // Maximum number of labels
+                        }
                     }
                 }
             }
@@ -490,6 +519,7 @@
             filterAndPlotData(startDate, endDate);
         });
     </script>
+    
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
